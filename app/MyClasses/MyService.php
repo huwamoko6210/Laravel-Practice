@@ -1,7 +1,7 @@
 <?php
 namespace App\Myclasses;
 
-class MyService
+class MyService implements MyServiceInterface
 {
     private $id = -1;
     private $msg = 'no id!';
