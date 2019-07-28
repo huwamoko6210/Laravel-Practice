@@ -1,27 +1,19 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Facades\MyService;
 use App\Myclasses\MyServiceInterface;
 use Illuminate\Http\Request;
 
 class HelloController extends Controller
 {
-    public function index(MyServiceInterface $myservice, int $id = -1)
+    public function index(int $id = -1)
     {
-        $myservice->setId($id);
+        MyService::setId($id);
 
         $data = [
-            'msg' => $myservice->say($id),
-            'data' => $myservice->alldata()
-        ];
-
-        return view('hello.index', $data);
-    }
-
-    public function other(Request $request)
-    {
-        $data = [
-            'msg' => $request->bye,
+            'msg' => MyService::say(),
+            'data' => MyService::alldata()
         ];
 
         return view('hello.index', $data);
